@@ -1,14 +1,12 @@
-import Box from "@mui/material/Box";
 import Header from "../components/Header";
+import ProductsList from "../components/ProductsList";
 
 
 function Home() {
     return (
         <>
       <Header />
-      <Box>
-        <p>homepage</p>
-      </Box>
+      <ProductsList></ProductsList>
     </>
     );
 }
