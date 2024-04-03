@@ -4,10 +4,10 @@ import ProductsList from "../components/ProductsList";
 
 function Home() {
     return (
-        <>
-      <Header />
-      <ProductsList></ProductsList>
-    </>
+      <>
+        <Header />
+        <ProductsList></ProductsList>
+      </>
     );
 }
 

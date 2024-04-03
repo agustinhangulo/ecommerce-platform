@@ -16,7 +16,7 @@ function ProductsList() {
             <Grid container spacing={2} justifyContent='center' alignItems='stretch'> 
             {
                 products.map( (productObj: any) => {
-                    console.log(productObj);
+                    // console.log(productObj);
                     return (
                         <Grid item key={productObj.id}>
                             <Product product={productObj} />
