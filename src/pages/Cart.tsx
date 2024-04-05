@@ -1,14 +1,13 @@
-import Box from "@mui/material/Box";
 import Header from "../components/Header";
+import CartItems from "../components/CartItems";
 
 function Cart() {
+
     return (
         <>
             <Header />
-            <Box>
-                <p>cart</p>
-            </Box>
-        </>
+            <CartItems/>
+        </> 
     );
 }
 

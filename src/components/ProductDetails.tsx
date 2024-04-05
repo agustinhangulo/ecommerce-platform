@@ -9,13 +9,18 @@ import MenuItem from '@mui/material/MenuItem'
 import FormControl from "@mui/material/FormControl";
 import InputLabel from "@mui/material/InputLabel";
 import Button from '@mui/material/Button'
+import { useContext, useState } from "react";
+import { useCartContext } from "../context/CartContext";
 
 
 
 
 
 function ProductDetails({productID}: ProductDetailsProps) {
+
     const { product, loading, error } = useProductData(productID);
+    const [quantity, setQuantity] = useState(1);
+    const { addToCart } = useCartContext();
 
     if (error) return <p>Error encountered while finding product</p>
     else if (loading) return <p>Loading...</p>
@@ -44,6 +49,7 @@ function ProductDetails({productID}: ProductDetailsProps) {
                             <Select
                                 label="Quantity"
                                 defaultValue={1}
+                                onChange={ (e) => setQuantity(e.target.value) }
                             >
                                 <MenuItem value={1}>1</MenuItem>
                                 <MenuItem value={2}>2</MenuItem>
@@ -51,7 +57,13 @@ function ProductDetails({productID}: ProductDetailsProps) {
                                 <MenuItem value={4}>4</MenuItem>
                                 <MenuItem value={5}>5</MenuItem>
                             </Select>
-                            <Button variant="contained" color="primary">
+                            <Button 
+                                variant="contained" 
+                                color="primary"
+                                onClick={ () => {
+                                    addToCart(product, quantity)
+                                }}
+                            >
                               Add to cart
                             </Button>
                         </FormControl>
