@@ -1,8 +1,6 @@
 import IconButton from '@mui/material/IconButton'
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
-import DeleteIcon from '@mui/icons-material/Delete';
-import Divider from "@mui/material/Divider";
 import Stack from "@mui/material/Stack";
 import TextField from '@mui/material/TextField'
 import { CartItem } from '../util/CartTypes';
@@ -13,44 +11,33 @@ function CartItemQuantityInput({ cartItem } : CartItemQuantityInputProps) {
     const [quantity, setQuantity] = useState(cartItem.quantity)
 
     return (
-        <Stack direction='row' alignItems='center' spacing={1}>
+        <Stack direction='row' alignItems='center' gap={1}>
             <IconButton
-                onClick={() => console.log('delete')}
-                aria-label={`Remove ${cartItem.product.title} from cart`}
+                color='primary'
+                onClick={() => {console.log("-")}}
+                aria-label={`Increase quantity of ${cartItem.product.title}`}
             >
-                <DeleteIcon/>
+                <RemoveIcon/>
             </IconButton>
 
-            <Divider orientation='vertical' flexItem/>
+            <TextField
+                id=""
+                label="Qty"
+                value={quantity}
+                onChange={(e) => {
+                    let qtyNumber = parseInt(e.target.value)
+                    setQuantity(qtyNumber);
+                }}
+                sx={{maxWidth: '3rem'}}
+            />
 
-            <Stack direction='row' alignItems='center' gap={1}>
-                <IconButton
-                    color='primary'
-                    onClick={() => {console.log("-")}}
-                    aria-label={`Increase quantity of ${cartItem.product.title}`}
-                >
-                    <RemoveIcon/>
-                </IconButton>
-
-                <TextField
-                    id=""
-                    label="Qty"
-                    value={quantity}
-                    onChange={(e) => {
-                        let qtyNumber = parseInt(e.target.value)
-                        setQuantity(qtyNumber);
-                    }}
-                    sx={{maxWidth: '3rem'}}
-                />
-
-                <IconButton
-                    color='primary'
-                    onClick={() => {console.log("+")}}
-                    aria-label={`Increase quantity of ${cartItem.product.title}`}
-                >
-                    <AddIcon/>
-                </IconButton>
-            </Stack>
+            <IconButton
+                color='primary'
+                onClick={() => {console.log("+")}}
+                aria-label={`Increase quantity of ${cartItem.product.title}`}
+            >
+                <AddIcon/>
+            </IconButton>
         </Stack>
     );
 }

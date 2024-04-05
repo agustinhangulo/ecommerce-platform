@@ -8,11 +8,13 @@ interface CartContextProviderProps {
 
 class CartContextType {
     cartItems: CartItem[];
-    addToCart
+    addToCart;
+    removeFromCart;
 
     constructor() {
         this.cartItems = []
         this.addToCart = (product: any, quantity: number) => {}
+        this.removeFromCart = (product: any) => {}
     }
 }
 
@@ -45,10 +47,24 @@ function CartContextProvider({ children } : CartContextProviderProps) {
             setCartItems([...cartItems, new CartItem(product, quantity)]);
         }
     };
+    
+    const removeFromCart = (cartItem: CartItem) => {
+
+        // Keep everything in cart except for cartItem
+        const updatedCartItems = cartItems.filter( (currCartItem) => {
+            if (currCartItem.product.id !== cartItem.product.id) {
+                return cartItem;
+            }
+        } );
+        
+        setCartItems(updatedCartItems);
+    }
+    
 
     const value = {
         cartItems,
         addToCart,
+        removeFromCart
     }
 
     return <CartContext.Provider value={value}>{children}</CartContext.Provider>

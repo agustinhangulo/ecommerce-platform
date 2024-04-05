@@ -5,9 +5,16 @@ import CardContent from "@mui/material/CardContent";
 import Typography from '@mui/material/Typography'
 import Box from "@mui/material/Box";
 import CartItemQuantityInput from "./CartQuantityInput";
+import { useCartContext } from "../context/CartContext";
+import Divider from "@mui/material/Divider";
+import Stack from "@mui/material/Stack";
+import IconButton from "@mui/material/IconButton";
+import DeleteIcon from '@mui/icons-material/Delete';
 
 
 function CartItemCard( { cartItem } : CartItemCardProps ) {
+
+    const { removeFromCart } = useCartContext();
 
     return (
         <Card variant="outlined" sx={{width: '100%', maxWidth: '1024px'}}>
@@ -27,7 +34,18 @@ function CartItemCard( { cartItem } : CartItemCardProps ) {
                         </Typography>
                     </Box>
                 </Box>
-                <CartItemQuantityInput cartItem={cartItem} />
+                <Stack direction='row' alignItems='center' spacing={1}>
+                    <IconButton
+                        onClick={() => removeFromCart(cartItem)}
+                        aria-label={`Remove ${cartItem.product.title} from cart`}
+                    >
+                        <DeleteIcon/>
+                    </IconButton>
+
+                    <Divider orientation='vertical' flexItem/>
+
+                    <CartItemQuantityInput cartItem={cartItem} />
+                </Stack>
             </StyledCardContent>
         </Card>
     );

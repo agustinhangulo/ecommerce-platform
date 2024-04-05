@@ -9,8 +9,6 @@ import styled from "@emotion/styled";
 import Box from "@mui/material/Box";
 import { CartItem } from "../util/CartTypes";
 import CartItemCard from "./CartItemCard";
-import Divider from "@mui/material/Divider";
-
 
 
 function CartItems() {
