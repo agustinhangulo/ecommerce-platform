@@ -10,11 +10,13 @@ class CartContextType {
     cartItems: CartItem[];
     addToCart;
     removeFromCart;
+    modifyCartQuantity;
 
     constructor() {
         this.cartItems = []
         this.addToCart = (product: any, quantity: number) => {}
         this.removeFromCart = (product: any) => {}
+        this.modifyCartQuantity = (product: any, newQuantity: number) => {}
     }
 }
 
@@ -60,11 +62,25 @@ function CartContextProvider({ children } : CartContextProviderProps) {
         setCartItems(updatedCartItems);
     }
     
+    const modifyCartQuantity = (product: any, newQuantity: number) => {
+
+        const updatedCartItems = cartItems.map( (currCartItem) => {
+            if (currCartItem.product.id === product.id) {
+                return new CartItem(product, newQuantity);
+            } else {
+                return currCartItem;
+            }
+        });
+
+        setCartItems(updatedCartItems);
+    }
+
 
     const value = {
         cartItems,
         addToCart,
-        removeFromCart
+        removeFromCart,
+        modifyCartQuantity
     }
 
     return <CartContext.Provider value={value}>{children}</CartContext.Provider>

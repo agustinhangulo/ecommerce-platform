@@ -4,7 +4,7 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from '@mui/material/Typography'
 import Box from "@mui/material/Box";
-import CartItemQuantityInput from "./CartQuantityInput";
+import CartItemQuantityInput from "./CartItemQuantityInput";
 import { useCartContext } from "../context/CartContext";
 import Divider from "@mui/material/Divider";
 import Stack from "@mui/material/Stack";
@@ -70,8 +70,12 @@ const StyledCardContent = styled(CardContent)((_) => ({
     justifyContent: 'space-between',
     alignItems: 'center',
     gap: '24px',
-    flexWrap: 'wrap',
+    
+    '@media (max-width: 768px)': {
+        flexDirection: 'column',
+    }
 }));
+
 
 
 export default CartItemCard;

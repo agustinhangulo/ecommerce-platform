@@ -34,15 +34,15 @@ function CartItems() {
                     }
 
 
-                    <Stack direction='row' justifyContent='space-between' flexWrap='wrap' gap={2} sx={{width: '100%', maxWidth: '1024px'}}>
-                        <Typography variant="h6" component='p'  sx={{display:'flex', gap: '1rem'}}>
-                            Subtotal ({calcCartTotalItems(cartItems)} items):
-                                <Typography variant="h6" component='p' fontWeight='bold'>${calcSubtotal(cartItems)}</Typography>
-                        </Typography>
+                    <SubtotalCheckoutArea direction='row' justifyContent='space-between' flexWrap='wrap' gap={2}>
+                        <Box sx={{display:'flex', gap: '1rem'}}>
+                            <Typography variant="h6" component='p'>Subtotal ({calcCartTotalItems(cartItems)} items):</Typography>
+                            <Typography variant="h6" component='p' fontWeight='bold'>${calcSubtotal(cartItems)}</Typography>
+                        </Box>
                         <Button variant="contained" color="primary">
                             Checkout
                         </Button>
-                    </Stack>
+                    </SubtotalCheckoutArea>
                 </Stack>
             </Box>
         );
@@ -105,5 +105,15 @@ const StyledBox = styled(Box)((_) => ({
     display: 'flex',
     justifyContent: 'center',
 }));
+
+const SubtotalCheckoutArea = styled(Stack)((_) => ({
+    width: '100%', 
+    maxWidth: '1024px',
+
+    '@media (max-width: 512px)': {
+        justifyContent: 'center',
+        flexDirection: 'column',
+    }
+}))
 
 export default CartItems;
