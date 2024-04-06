@@ -6,12 +6,30 @@ import SearchIcon from '@mui/icons-material/Search';
 import ProductsList from "../components/ProductsList";
 import { useState } from "react";
 import Button from '@mui/material/Button'
+import CategoryChips from "../components/CategoryChips";
+
+
+// Although it would probably be better to retrieve these from DummyJSON
+// I opted out of this to avoid cluttering the UI
+const CATEGORY_OPTIONS = [
+    "smartphones",
+    "laptops",
+    "skincare",
+    "home-decoration",
+    "womens-dresses",
+    "womens-shoes",
+    "mens-shirts",
+    "mens-shoes",
+    "womens-jewellery",
+    "automotive",
+];
 
 function Search() {
 
     const [queryInput, setQueryInput] = useState('');
     const [query, setQuery] = useState('');
 
+    const [category, setCategory] = useState('');
 
     // If the user presses enter when searching, their search is submitted
     const handleKeyPress = (e) => {
@@ -48,7 +66,12 @@ function Search() {
                       Search
                     </Button>
                 </Stack>
-                <ProductsList query={query}></ProductsList>
+                <CategoryChips 
+                    categoryOptions={CATEGORY_OPTIONS} 
+                    category={category} 
+                    onChange={(newValue) => setCategory(newValue)}
+                />
+                <ProductsList query={query} category={category}></ProductsList>
             </Stack>
         </>
     )

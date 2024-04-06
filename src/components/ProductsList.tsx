@@ -6,9 +6,25 @@ import Typography from '@mui/material/Typography'
 import Stack from "@mui/material/Stack";
 
 
-function ProductsList({query = ''}) {
+function ProductsList({query = '', category = ''}) {
 
     const {products, loading, error} = useProductsData(query);
+
+    const filterProductsByCategory = (category: string) => {
+        if (category === '') {
+            return products;
+        } else {
+            let filtered = products.filter( (product: any) => {
+                if (product.category === category) {
+                    return product;
+                }
+            } );
+            return filtered;
+        }
+    }
+
+    let filteredProducts = filterProductsByCategory(category);
+
 
     // TODO: 
     if (error) {
@@ -30,8 +46,8 @@ function ProductsList({query = ''}) {
         <Box padding={4}>
             <Grid container spacing={2} justifyContent='center' alignItems='stretch'> 
             {
-                products.length !== 0 ?
-                    products.map( (productObj: any) => {
+                filteredProducts.length !== 0 ?
+                    filteredProducts.map( (productObj: any) => {
                         // console.log(productObj);
                         return (
                             <Grid item key={productObj.id}>
@@ -45,10 +61,6 @@ function ProductsList({query = ''}) {
             </Grid>
         </Box>
     );
-}
-
-interface ProductsListProps {
-    query: String,
 }
 
 export default ProductsList;
