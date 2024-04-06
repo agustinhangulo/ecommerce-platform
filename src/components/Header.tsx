@@ -4,9 +4,11 @@ import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 import Button from '@mui/material/Button';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import SearchIcon from '@mui/icons-material/Search';
 import { Link } from 'react-router-dom';
 import styled from '@emotion/styled';
 import Box from '@mui/material/Box';
+
 
 function Header() {
     return (
@@ -25,11 +27,18 @@ function Header() {
                             </Button>
                         </StyledLink>
                     </Box>
-                    <StyledLink to='/cart' aria-label='Open shopping cart'>
-                        <IconButton tabIndex={-1}>
-                            <ShoppingCartIcon sx={{color: 'white'}}  />
-                        </IconButton>
-                    </StyledLink>
+                    <Box display='flex' gap={1} alignItems='center'>
+                        <StyledLink to='/search' aria-label='Search items page'>
+                            <IconButton tabIndex={-1}>
+                                <SearchIcon sx={{color: 'white'}} />
+                            </IconButton>
+                        </StyledLink>
+                        <StyledLink to='/cart' aria-label='Open shopping cart'>
+                            <IconButton tabIndex={-1}>
+                                <ShoppingCartIcon sx={{color: 'white'}}  />
+                            </IconButton>
+                        </StyledLink>
+                    </Box>
                 </Box>
             </Toolbar>
         </AppBar>

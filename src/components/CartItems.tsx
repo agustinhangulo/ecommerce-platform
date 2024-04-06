@@ -63,7 +63,7 @@ function EmptyCartMessage() {
                                     Shop
                                 </Button>
                             </StyledLink>
-                            <StyledLink to='/'>
+                            <StyledLink to='/search'>
                                 <Button variant="outlined" sx={{width: '100%'}}>
                                     Search for items
                                 </Button>
